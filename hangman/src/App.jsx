@@ -4,15 +4,26 @@ import words from './data/words.json'
 import WordDisplay from './components/WordDisplay';
 
 function App() {
-  console.log(words);
-  // const [puzzleWord, setPuzzleWord] = useState(() => {
-  //   const index =  Math.floor(Math.random() * words.length);
-  //   return words[index];
-  // });
+  // console.log(words);
 
-  // TODO: Remove the fake data
-  const [puzzleWord, setPuzzleWord] = useState("hello");
-  const [guessedLetters, setGuessedLetters] = useState({ h: true, l: true, o: true });
+  // Fake data we can use to make our dev workflow easier and faster
+  const fakeWords = ['hello'];
+  const fakeInitialGuessedLetters = { h: true, l: true };
+
+  // Get a random word to guess from an array of possible words.
+  const getPuzzleWord = (possibleWords) => {
+    const index =  Math.floor(Math.random() * possibleWords.length);
+    return possibleWords[index];
+  };
+
+  // Create state for our word to guess - the `puzzleWord`
+  const [puzzleWord, setPuzzleWord] = useState(getPuzzleWord(fakeWords));
+
+
+  // Create state which will hold an obj we'll use as a dict to track guessed letters
+  // and which guesses were correct.
+  const initialGuessedLetters = {};
+  const [guessedLetters, setGuessedLetters] = useState(fakeInitialGuessedLetters);
 
   return (
     <>
